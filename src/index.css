@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Segoe+UI:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* pgAdmin-inspired palette */
+    --background: 0 0% 96%;
+    --foreground: 220 10% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 10% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 10% 15%;
+
+    /* Primary - pgAdmin blue */
+    --primary: 210 65% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Light gray */
+    --secondary: 220 10% 94%;
+    --secondary-foreground: 220 10% 25%;
+
+    /* Muted */
+    --muted: 220 10% 92%;
+    --muted-foreground: 220 8% 45%;
+
+    /* Accent - Purple */
+    --accent: 262 45% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 12% 85%;
+    --input: 220 12% 85%;
+    --ring: 210 65% 45%;
+
+    --radius: 0.25rem;
+
+    /* pgAdmin specific tokens */
+    --pgadmin-sidebar-bg: 220 15% 20%;
+    --pgadmin-sidebar-text: 220 10% 85%;
+    --pgadmin-sidebar-hover: 220 15% 28%;
+    --pgadmin-sidebar-active: 210 65% 40%;
+    --pgadmin-header-bg: 220 12% 92%;
+    --pgadmin-grid-header: 220 12% 88%;
+    --pgadmin-grid-border: 220 10% 82%;
+    --pgadmin-grid-row-alt: 220 15% 98%;
+    --pgadmin-tab-active: 210 65% 45%;
+    --pgadmin-icon-folder: 45 80% 50%;
+    --pgadmin-icon-table: 210 70% 55%;
+    --pgadmin-icon-column: 280 50% 55%;
+    --pgadmin-icon-schema: 140 50% 45%;
+    --pgadmin-icon-db: 30 70% 50%;
+    --pgadmin-null-text: 220 10% 60%;
+    --pgadmin-pk: 45 90% 50%;
+    --pgadmin-fk: 280 60% 55%;
+
+    --sidebar-background: 220 15% 20%;
+    --sidebar-foreground: 220 10% 85%;
+    --sidebar-primary: 210 65% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 28%;
+    --sidebar-accent-foreground: 220 10% 90%;
+    --sidebar-border: 220 15% 30%;
+    --sidebar-ring: 210 65% 45%;
+  }
+
+  .dark {
+    --background: 220 15% 10%;
+    --foreground: 220 10% 90%;
+
+    --card: 220 15% 14%;
+    --card-foreground: 220 10% 90%;
+
+    --popover: 220 15% 14%;
+    --popover-foreground: 220 10% 90%;
+
+    --primary: 210 60% 55%;
+    --primary-foreground: 220 15% 10%;
+
+    --secondary: 220 12% 20%;
+    --secondary-foreground: 220 10% 85%;
+
+    --muted: 220 12% 18%;
+    --muted-foreground: 220 8% 55%;
+
+    --accent: 262 45% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 12% 25%;
+    --input: 220 12% 25%;
+    --ring: 210 60% 55%;
+
+    --pgadmin-sidebar-bg: 220 15% 12%;
+    --pgadmin-sidebar-text: 220 10% 80%;
+    --pgadmin-sidebar-hover: 220 15% 18%;
+    --pgadmin-sidebar-active: 210 60% 35%;
+    --pgadmin-header-bg: 220 12% 16%;
+    --pgadmin-grid-header: 220 12% 18%;
+    --pgadmin-grid-border: 220 10% 22%;
+    --pgadmin-grid-row-alt: 220 12% 12%;
+    --pgadmin-tab-active: 210 60% 50%;
+
+    --sidebar-background: 220 15% 12%;
+    --sidebar-foreground: 220 10% 80%;
+    --sidebar-primary: 210 60% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 18%;
+    --sidebar-accent-foreground: 220 10% 85%;
+    --sidebar-border: 220 12% 22%;
+    --sidebar-ring: 210 60% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+  }
+
+  code, .font-mono {
+    font-family: "IBM Plex Mono", "Consolas", "Monaco", monospace;
+  }
+}
+
+@layer components {
+  /* pgAdmin Sidebar */
+  .pgadmin-sidebar {
+    @apply bg-sidebar text-sidebar-foreground;
+  }
+
+  .pgadmin-tree-item {
+    @apply flex items-center gap-1 py-0.5 px-2 cursor-pointer text-[13px] hover:bg-sidebar-accent rounded-sm;
+  }
+
+  .pgadmin-tree-item.active {
+    @apply bg-sidebar-primary text-sidebar-primary-foreground;
+  }
+
+  /* pgAdmin Grid */
+  .pgadmin-grid {
+    @apply w-full border border-pgadmin-grid-border text-[12px];
+  }
+
+  .pgadmin-grid th {
+    @apply bg-pgadmin-grid-header border border-pgadmin-grid-border px-2 py-1.5 text-left font-semibold text-foreground;
+  }
+
+  .pgadmin-grid td {
+    @apply border border-pgadmin-grid-border px-2 py-1.5 text-foreground;
+  }
+
+  .pgadmin-grid tr:nth-child(even) td {
+    @apply bg-pgadmin-grid-row-alt;
+  }
+
+  .pgadmin-grid tr:hover td {
+    @apply bg-primary/10;
+  }
+
+  /* pgAdmin Tabs */
+  .pgadmin-tab {
+    @apply px-3 py-1.5 text-[12px] font-medium border-b-2 border-transparent cursor-pointer;
+  }
+
+  .pgadmin-tab.active {
+    @apply border-primary text-primary bg-card;
+  }
+
+  .pgadmin-tab:hover:not(.active) {
+    @apply bg-muted;
+  }
+
+  /* pgAdmin Panel Header */
+  .pgadmin-panel-header {
+    @apply bg-pgadmin-header-bg border-b border-border px-3 py-2 flex items-center gap-2;
+  }
+
+  /* Constraint badges */
+  .constraint-pk {
+    @apply inline-flex items-center justify-center w-4 h-4 text-[9px] font-bold rounded bg-pgadmin-pk text-foreground;
+  }
+
+  .constraint-fk {
+    @apply inline-flex items-center justify-center w-4 h-4 text-[9px] font-bold rounded bg-pgadmin-fk text-primary-foreground;
+  }
+
+  .constraint-nn {
+    @apply inline-flex items-center justify-center px-1 h-4 text-[9px] font-medium rounded bg-muted text-muted-foreground;
+  }
+
+  /* Data type badge */
+  .data-type {
+    @apply font-mono text-[11px] text-muted-foreground;
+  }
+
+  /* Null value */
+  .null-value {
+    @apply italic text-pgadmin-null-text;
+  }
+
+  /* Tech tag */
+  .tech-tag-grid {
+    @apply inline-block px-1 py-0.5 text-[10px] font-mono bg-muted rounded mr-1 mb-0.5;
+  }
+
+  /* Tree icons */
+  .tree-icon {
+    @apply w-4 h-4 flex-shrink-0;
+  }
+
+  /* Animações */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      max-height: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      max-height: 1000px;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--muted-foreground) / 0.1) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+  }
+}
+
+@layer utilities {
+  .bg-pgadmin-sidebar-bg { background-color: hsl(var(--pgadmin-sidebar-bg)); }
+  .bg-pgadmin-sidebar-hover { background-color: hsl(var(--pgadmin-sidebar-hover)); }
+  .bg-pgadmin-sidebar-active { background-color: hsl(var(--pgadmin-sidebar-active)); }
+  .bg-pgadmin-header-bg { background-color: hsl(var(--pgadmin-header-bg)); }
+  .bg-pgadmin-grid-header { background-color: hsl(var(--pgadmin-grid-header)); }
+  .bg-pgadmin-grid-row-alt { background-color: hsl(var(--pgadmin-grid-row-alt)); }
+  .border-pgadmin-grid-border { border-color: hsl(var(--pgadmin-grid-border)); }
+  .text-pgadmin-null-text { color: hsl(var(--pgadmin-null-text)); }
+  .bg-pgadmin-pk { background-color: hsl(var(--pgadmin-pk)); }
+  .bg-pgadmin-fk { background-color: hsl(var(--pgadmin-fk)); }
+  .text-pgadmin-icon-folder { color: hsl(var(--pgadmin-icon-folder)); }
+  .text-pgadmin-icon-table { color: hsl(var(--pgadmin-icon-table)); }
+  .text-pgadmin-icon-column { color: hsl(var(--pgadmin-icon-column)); }
+  .text-pgadmin-icon-schema { color: hsl(var(--pgadmin-icon-schema)); }
+  .text-pgadmin-icon-db { color: hsl(var(--pgadmin-icon-db)); }
+}
